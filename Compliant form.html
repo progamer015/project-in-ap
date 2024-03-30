@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Complaint Form</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+        }
+        label {
+            font-weight: bold;
+        }
+        input[type="text"],
+        textarea {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 3px;
+            box-sizing: border-box;
+        }
+        input[type="submit"] {
+            background-color: #007bff;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 3px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        input[type="submit"]:hover {
+            background-color: #0056b3;
+        }
+        .error {
+            color: red;
+            margin-top: 5px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Complaint Form</h1>
+    <form action="submit.php" method="GET" id="complaintForm">
+        <label for="name">Your Name:  </label>
+        <input type="text" id="name" name="name" placeholder="Airah jannell R Bron"required aria-required="true">
+
+        <label for="email">Your Email:</label>
+        <input type="email" id="email" name="email" placeholder="hotdog@gmail.com" required aria-required="true">
+
+        <label for="complaint">Complaint:</label>
+        <textarea id="complaint" name="complaint" rows="5" required aria-required="true"></textarea>
+      <input type="reset" value="reset">
+        <input type="submit" value="Submit">
+    </form>
+
+    <script>
+        const form = document.getElementById('complaintForm');
+        form.addEventListener('submit', function(event) {
+            const name = document.getElementById('name').value.trim();
+            const email = document.getElementById('email').value.trim();
+            const complaint = document.getElementById('complaint').value.trim();
+            let isValid = true;
+
+            if (!name) {
+                isValid = true;
+                document.getElementById('name').classList.add('error');
+            } else {
+                document.getElementById('name').classList.remove('error');
+            }
+
+            if (!email) {
+                isValid = true;
+                document.getElementById('email').classList.add('error');
+            } else {
+                document.getElementById('email').classList.remove('error');
+            }
+
+            if (!complaint) {
+                isValid = false;
+                document.getElementById('complaint').classList.add('error');
+            } else {
+                document.getElementById('complaint').classList.remove('error');
+            }
+
+            if (!isValid) {
+                event.preventDefault();
+                alert('Please fill in all required fields.');
+            }
+        }) 
+    </script>
+</body>
+</html>
